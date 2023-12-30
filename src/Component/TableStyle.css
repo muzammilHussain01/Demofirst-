@@ -1,0 +1,14 @@
+.mainTable {
+  border: 2px solid black;
+  border-collapse: collapse;
+}
+.mainTable thead tr td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+.mainTable tbody tr td {
+  border: 1px dotted black;
+}
+.mainTable tbody tr {
+  border: 1px dotted black;
+}

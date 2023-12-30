@@ -1,0 +1,45 @@
+* {
+  padding: 0 px;
+  margin: 0px;
+}
+
+/* css for feildset*/
+.feildset {
+  width: 20%;
+  background-color: black;
+  color: white;
+}
+
+.feildset legend {
+  font-size: x-large;
+  font-weight: bolder;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-decoration: underline;
+  color: rgb(211, 228, 17);
+}
+.inputForm input[text] {
+  background-color: bisque;
+}
+
+.inputForm {
+  color: white;
+  border: 2px solid black;
+}
+
+/*css for className="button"*/
+.button {
+  background-color: blue;
+  color: white;
+  border-radius: 50px;
+  border-style: outset;
+  border: 2px solid red;
+  margin-left: 1%;
+}
+.button:hover {
+  background-color: white;
+  color: blue;
+  border-radius: 50px;
+  border-style: outset;
+  border: 2px solid red;
+  margin-left: 1%;
+}

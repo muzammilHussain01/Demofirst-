@@ -1,36 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./TableStyle.css";
-import { Search } from "./Search";
 
-let newArray = (dataValues) => {
+let table = (dataValues) => {
   return (
     <>
-      <tr>
-        <td>{dataValues.id}</td>
-        <td>{dataValues.userId}</td>
-        <td>{dataValues.title}</td>
-        <td>{dataValues.body}</td>
-      </tr>
+      <tbody>
+        <tr>
+          <td>{dataValues.id}</td>
+          <td>{dataValues.userId}</td>
+          <td>{dataValues.title}</td>
+          <td>{dataValues.body}</td>
+        </tr>
+      </tbody>
     </>
   );
 };
-const Data = () => {
-  //useState hook for updating info
-  let [info, updatedInfo] = useState([]);
-  let fun = async () => {
-    let data = await fetch("https://jsonplaceholder.typicode.com/posts");
-    var info = await data.json();
+// function Component
+const FetchData = () => {
+  let [info, setInfo] = useState([]);
+  let [err, isErr] = useState("");
 
-    updatedInfo(info);
+  let data = async () => {
+    try {
+      const link = "https://jsonplaceholder.typicode.com/posts";
+      let response = await axios.get(link);
+      let information = await response.data;
+      setInfo(information);
+    } catch (error) {
+      isErr(error.message);
+      console.log(error);
+    }
   };
-  // useEffect hook to call fun() at the time of page loading
+
   useEffect(() => {
-    fun();
+    data();
   }, []);
 
   return (
     <>
-      <Search />
+      <p>{err}</p>
       <table className="mainTable">
         <thead>
           <tr>
@@ -40,9 +49,10 @@ const Data = () => {
             <th>body</th>
           </tr>
         </thead>
-        <tbody>{info.map(newArray)}</tbody>
+        {info.map(table)}
       </table>
     </>
   );
 };
-export default Data;
+
+export default FetchData;
