@@ -29,7 +29,6 @@ const FetchData = () => {
       setInfo(information);
     } catch (error) {
       isErr(error.message);
-      console.log(error);
     }
   };
 
