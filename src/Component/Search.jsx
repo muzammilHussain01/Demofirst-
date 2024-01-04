@@ -13,16 +13,16 @@ const Search = () => {
   };
   const search = () => {
     for (let i = 0; i < info.length; i++) {
-      if (info[i].id === searchKey) {
+      if (info[i].id === parseInt(searchKey)) {
         console.log("Founded", searchKey);
-      } else if (info[i].userId === searchKey) {
+      } else if (info[i].userId === parseInt(searchKey)) {
         console.log("Founded", searchKey);
       } else if (info[i].title === searchKey) {
         console.log("Founded", searchKey);
       } else if (info[i].body === searchKey) {
         console.log("Founded", searchKey);
       } else {
-        console.log("Not Founded !");
+        console.log("No Data Founded !");
       }
     }
   };
