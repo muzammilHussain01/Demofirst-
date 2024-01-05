@@ -1,0 +1,137 @@
+*******......1.........******aysnc await:
+Promise:
+=> Promise is an object that eventual completion or failure of an asynchronous operation and its resulting value. 
+=> It allows us to write asynchronous code in a more organized and readable manner.
+=> It gives us benifit over callback-hell problem in callback function.
+
+A Promise can be in one of three states:
+1. Pending: The initial state, the promise is neither fulfilled nor rejected.
+2. Fulfilled: The operation completed successfully, and the promise has a resulting value.
+3. Rejected: The operation failed, and the promise has a reason for the failure.
+
+SYNTAX: 
+
+const myPromise = new Promise(
+    (resolve, reject) => {
+    resolve(data); 
+    reject(data);
+    }
+)
+Using the result from promise
+
+myPromise.then((result) => {
+    console.log(result);
+  }).catch((error) => {
+    console.error(error); 
+  });
+
+
+*******......2.........******
+aysnc await:
+async/await is a syntax in JavaScript that simplifies working with asynchronous code and it returns promises. It provides a more readable and concise way to write asynchronous code compared to using raw promises and callbacks.
+
+async Function: We declare a function as async to indicate that it contains asynchronous code. The async keyword can be used before a function declaration or an arrow function.
+
+await Operator: Inside an async function, we use the await keyword to pause the execution of the function until the awaited promise is resolved or rejected. The await keyword can only be used inside an async function.
+
+Error Handling: We can use try/catch blocks to handle errors when using async/await.
+Note = async/await is particularly useful in scenarios where we have multiple asynchronous operations that need to be executed sequentially, and we want to avoid callback hell or complex promise chaining. It makes asynchronous code look more like synchronous code, which can improve readability and maintainability.
+SYNTAX:
+async function fun() {
+  const result = await someOpration;
+  console.log(result);
+}
+
+*******......3.........******
+Callbacks: Callbacks in JavaScript refer to functions that are passed as arguments to other functions and are then invoked inside the receiving function. Callbacks are a way to manage asynchronous operations, handle events, and create more flexible and modular code.
+By using callback we can perform oprations like:
+1. Asynchronous Operations
+2. Event Handling
+3. Iterating Arrays
+4. Dynamic Behavior
+
+
+Callback hell: Callback hell, also known as "pyramid of doom" or "callback spaghetti," refers to a situation in asynchronous programming where callback functions are nested within each other, creating a deep and complex structure. This occurs when you have multiple asynchronous operations that depend on the completion of previous operations. The result is code that becomes difficult to read, understand, and maintain.
+
+
+*******......4.........******
+Fetch api: Fetch API is a modern JavaScript API for making network requests, particularly HTTP requests. It provides a more powerful and flexible way to work with HTTP compared to older techniques like XMLHttpRequest.
+
+SYNTAX:
+fetch(url).then(
+    (response) => {
+    return response.json();
+  }).then(
+    (data) => {
+    console.log(data);
+  }).catch(error => {
+    console.error(error);
+  });
+
+Note: Ye opration chatGpt pr dekha tha par working samajh nhi aai hai.
+
+fetch('https://api.example.com/post-data', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    // Additional headers if needed
+  },
+  body: JSON.stringify({
+    key1: 'value1',
+    key2: 'value2'
+    // JSON data to be sent in the request body
+  })
+})
+  .then(response => response.json())
+  .then(data => console.log('Data received:', data))
+  .catch(error => console.error('Fetch error:', error));
+
+*******......5.........******
+
+Axios: Axios is a JavaScript library for making HTTP requests. It is commonly used in React applications for handling asynchronous operations, such as fetching data from an API. Axios is known for its simplicity and flexibility, and it can be easily integrated into a React project.
+1.  install Axios
+npm install axios
+2. import axios in component
+import axios from 'axios';
+
+Note: Ye opration chatGpt pr dekha tha par working samajh nhi aai hai.
+
+const postData = async () => {
+  try {
+    const response = await axios.post('https://api.example.com/post-data', {
+      key1: 'value1',
+      key2: 'value2'
+    });
+    console.log('Response from POST request:', response.data);
+  } catch (error) {
+    console.error('Error in POST request:', error);
+  }
+};
+
+
+
+*******......6.........******
+Diff b/w fetch and axios
+
+Both fetch and axios are JavaScript libraries used for making HTTP requests, but they have some differences in terms of usage, features, and ease of use. 
+
+Fetch API:
+Part of the JavaScript language, it's a native web API.
+Provides a simple and consistent interface for making HTTP requests.
+Uses Promises for handling asynchronous operations.
+Requires additional steps for common tasks like handling JSON data or setting headers.
+Requires manual checking of the ok property of the response to determine success or failure.
+catch block is used for error handling.
+
+Axios:
+A third-party library built on top of XMLHttpRequest.
+Offers a higher-level, more user-friendly API compared to the Fetch API.
+Also uses Promises but provides additional features.
+Handles JSON parsing automatically.
+Automatically parses JSON responses.
+Automatically rejects the Promise on HTTP error status codes (e.g., 404 or 500).
+
+
+
+
+
