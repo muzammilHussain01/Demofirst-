@@ -1,9 +1,11 @@
 import React from "react";
 import "./PageHeader.css";
 import imageLogo from "./logo/atlassian-blue-logo-copy.png";
+import downArrow from "./logo/downArrow.png";
+import searchLogo from "./logo/searchIcon.png";
 
-const WebPage = () => {
-  let x = "";
+const WebPage = (props) => {
+  console.log("web props", props);
   return (
     <>
       <div className="headerDiv">
@@ -13,19 +15,22 @@ const WebPage = () => {
           </li>
           <section className="section">
             <li>
-              <select>
-                <option>Products</option>
-              </select>
+              <button className="productButton" onClick={props.toggleDiv}>
+                Products &nbsp;
+                <img src={downArrow} alt="down arrow" />
+              </button>
             </li>
             <li>
-              <select>
-                <option>Solutions</option>
-              </select>
+              <button className="productButton" onClick={props.toggleDiv}>
+                Solutions &nbsp;
+                <img src={downArrow} alt="down arrow" />
+              </button>
             </li>
             <li>
-              <select>
-                <option>Resources</option>
-              </select>
+              <button className="productButton" onClick={props.toggleDiv}>
+                Resources &nbsp;
+                <img src={downArrow} alt="down arrow" />
+              </button>
             </li>
           </section>
         </ul>
@@ -34,7 +39,9 @@ const WebPage = () => {
             <li>
               <button className="signInButton">Sign in</button>
             </li>
-            <li>Search |</li>
+            <li>
+              <img src={searchLogo} alt="search icon" className="searchIcon" />|
+            </li>
           </section>
         </ul>
       </div>
