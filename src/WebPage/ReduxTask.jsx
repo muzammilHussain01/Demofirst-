@@ -1,24 +1,52 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./ReduxTask.css";
-/*Display items in on page (In card). 
-In desktop display 4 items in row and in mobile 2 items in a row
-Each card will have an add to cart button
-When we click on add to cart it should display the no. of items in cart (Create a simple header)*/
+import { UseSelector, useDispatch, useSelector } from "react-redux";
+import { incNumber, decNumber } from "./action/action";
 
 const ReduxTask = () => {
+  //useSelector
+  const myState = useSelector((state) => state.changeTheNumber);
+  //useDispatch
+  const dispatch = useDispatch();
   const [data, setData] = useState([]);
   const [ifError, setIferror] = useState("");
-
+  // useState for search
+  const [searchKey, setSearchKey] = useState("");
+  // logic for search button
+  const search = () => {
+    for (let i = 0; i < data.length; i++) {
+      if (parseInt(searchKey) === data[i].id) {
+        console.log("Item Founded !");
+      } else {
+        console.log("Item not Founded !");
+      }
+    }
+  };
+  // card component
   const Card = ({ item }) => {
     return (
       <div className="card">
         <h2>{item.albumId}</h2>
-        <h2>{item.id}</h2>
         <h2>{item.thumbnailUrl}</h2>
         <h2>{item.title}</h2>
         <h2>{item.url}</h2> <br />
-        <button className="btn">Add to cart</button>
+        <button
+          className="add-btn"
+          onClick={() => {
+            dispatch(incNumber());
+          }}
+        >
+          Add to cart
+        </button>
+        <button
+          className="remove-btn"
+          onClick={() => {
+            dispatch(decNumber());
+          }}
+        >
+          Remove from cart
+        </button>
       </div>
     );
   };
@@ -30,7 +58,6 @@ const ReduxTask = () => {
       let response = await axios.get(api);
       let res = await response.data;
       setData(res);
-      console.log(res);
     } catch (error) {
       setIferror(error);
     }
@@ -39,17 +66,34 @@ const ReduxTask = () => {
   useEffect(() => {
     asyncFun();
   }, []);
+  console.log();
 
   return (
     <>
-      <h1>{ifError}</h1>
+      <h2>{ifError}</h2>
+
+      <div className="container">
+        <ul>
+          <li className="search-box">
+            <input
+              type="text"
+              className="search"
+              onChange={(e) => setSearchKey(e.target.value)}
+            />
+            :<button onClick={search}> Search</button>
+          </li>
+          <li className="cart-container">
+            <h2>Cart</h2>
+            <h4>Add items:{myState}</h4>
+          </li>
+        </ul>
+      </div>
       <div className="mainDiv">
         {data.map((item) => {
-          return <Card item={item} />;
+          return <Card item={item} key={item.id} />;
         })}
       </div>
     </>
   );
 };
-
 export default ReduxTask;

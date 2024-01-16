@@ -27,11 +27,23 @@
   box-shadow: 0px 0px 50px 20px blueviolet;
   color: black;
 }
-
-.btn {
+.add-btn {
   padding: 8px 20px;
   width: 7%;
-  margin-left: 10%;
+
+  height: 50px;
+  background-color: #00fffc;
+  border-radius: 10px;
+  text-transform: uppercase;
+  overflow: hidden;
+  background: linear-gradient(120deg, transparent, #00fffc, grid-template-rows);
+  transition: 0.6s;
+  position: absolute;
+}
+.remove-btn {
+  padding: 8px 20px;
+  width: 7%;
+  margin-left: 17%;
   height: 50px;
   background-color: #00fffc;
   border-radius: 10px;
@@ -42,8 +54,58 @@
   position: absolute;
 }
 
-.btn:hover {
+.add-btn:hover {
   background: transparent;
   box-shadow: 0px 0px 50px 20px #00fffc;
   transform: rotate(360deg);
+}
+.remove-btn:hover {
+  background: transparent;
+  box-shadow: 0px 0px 50px 20px #00fffc;
+  transform: rotate(360deg);
+}
+.container {
+  float: right;
+}
+.container ul li {
+  list-style: none;
+  float: left;
+  margin-left: 20px;
+  text-decoration: underline;
+}
+.search-box {
+  margin-top: 15px;
+}
+.cart-container {
+  border: 2px solid black;
+  width: fit-content;
+  border-radius: 10px;
+  background-color: lightgreen;
+  color: red;
+  text-align: center;
+  box-shadow: 0px 0px 50px 20px lightgreen;
+}
+
+@media screen and (max-width: 914px) and (min-width: 412px) {
+  .mainDiv {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 8px;
+    background-color: red;
+    width: 100%;
+  }
+  .card {
+    width: 250px;
+    margin: 20px;
+  }
+  .add-btn {
+    width: 100px;
+    height: 7%;
+    font-size: xx-small;
+  }
+  .remove-btn {
+    width: 100px;
+    height: 7%;
+    font-size: xx-small;
+  }
 }
