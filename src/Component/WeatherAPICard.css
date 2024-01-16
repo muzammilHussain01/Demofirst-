@@ -1,4 +1,4 @@
-* {
+/** {
   padding: 0px;
   margin: 0px;
 }
@@ -25,4 +25,4 @@
   grid-gap: 5px;
   grid-row: 0 span / 1;
   grid-column: 0 span / 1;
-}
+}*/

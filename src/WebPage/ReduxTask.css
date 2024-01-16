@@ -1,0 +1,49 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.mainDiv {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 8px;
+  grid-template-rows: 1fr;
+  background-color: red;
+  width: 100%;
+}
+
+.card {
+  background-color: blueviolet;
+  border-radius: 10px;
+  color: antiquewhite;
+  margin: 0;
+  font-family: "Ralewar", sans-serif;
+  overflow: hidden;
+  width: 330px;
+  margin: 20px;
+}
+.card:hover {
+  box-shadow: 0px 0px 50px 20px blueviolet;
+  color: black;
+}
+
+.btn {
+  padding: 8px 20px;
+  width: 7%;
+  margin-left: 10%;
+  height: 50px;
+  background-color: #00fffc;
+  border-radius: 10px;
+  text-transform: uppercase;
+  overflow: hidden;
+  background: linear-gradient(120deg, transparent, #00fffc, grid-template-rows);
+  transition: 0.6s;
+  position: absolute;
+}
+
+.btn:hover {
+  background: transparent;
+  box-shadow: 0px 0px 50px 20px #00fffc;
+  transform: rotate(360deg);
+}
