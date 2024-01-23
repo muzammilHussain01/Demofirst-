@@ -1,8 +1,9 @@
 .container {
   width: 100%;
+
   background-color: rgb(139, 154, 240);
   border-bottom: 2px solid black;
-  position: fixed;
+  position: relative;
 }
 .list-1 {
   list-style: none;
