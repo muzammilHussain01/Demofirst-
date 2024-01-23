@@ -10,6 +10,83 @@
   padding-left: 15px;
   background-color: rgb(196, 200, 226);
 }
+.sideBar_1 option {
+  background-color: rgb(196, 200, 226);
+  border: none;
+}
+.sideBar_2 option {
+  background-color: rgb(196, 200, 226);
+  border: none;
+}
+.sideBar_3 option {
+  background-color: rgb(196, 200, 226);
+  border: none;
+}
+.sideBar_4 option {
+  background-color: rgb(196, 200, 226);
+  border: none;
+}
+.sideBar_5 option {
+  background-color: rgb(196, 200, 226);
+  border: none;
+}
+.sideBar_1:hover {
+  cursor: pointer;
+}
+.sideBar_2:hover {
+  cursor: pointer;
+}
+.sideBar_3:hover {
+  cursor: pointer;
+}
+.sideBar_4:hover {
+  cursor: pointer;
+}
+.sideBar_5:hover {
+  cursor: pointer;
+}
+.sideBar_6:hover {
+  cursor: pointer;
+}
+.sideBar_7:hover {
+  cursor: pointer;
+}
+.sideBar_8:hover {
+  cursor: pointer;
+}
+.sideBar_9:hover {
+  cursor: pointer;
+}
+.sideBar_10:hover {
+  cursor: pointer;
+}
+.sideBar_11:hover {
+  cursor: pointer;
+}
+.sideBar_6 option {
+  background-color: rgb(196, 200, 226);
+  border: none;
+}
+.sideBar_7 option {
+  background-color: rgb(196, 200, 226);
+  border: none;
+}
+.sideBar_8 option {
+  background-color: rgb(196, 200, 226);
+  border: none;
+}
+.sideBar_9 option {
+  background-color: rgb(196, 200, 226);
+  border: none;
+}
+.sideBar_10 option {
+  background-color: rgb(196, 200, 226);
+  border: none;
+}
+.sideBar_11 option {
+  background-color: rgb(196, 200, 226);
+  border: none;
+}
 .sideContent {
   padding-top: 30px;
   padding-bottom: 100px;

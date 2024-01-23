@@ -1,7 +1,27 @@
-import React, { useReducer, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import "./Card.css";
 
 const Card = () => {
+  // psaaward usestate
+  const [password, setPassword] = useState("");
+  const [isValid, setIsValid] = useState(false);
+  const handelChange = (e) => {
+    const newPassword = e.target.value;
+    setPassword(newPassword);
+    const hasCapital = /[A-Z]/.test(newPassword);
+    const hasSmall = /[a-z]/.test(newPassword);
+    const hasNum = /[0-9]/.test(newPassword);
+    const hasSpecialCharacter = /[!@#$%^&*()_+]/.test(newPassword);
+    setIsValid(hasCapital && hasSmall && hasNum && hasSpecialCharacter);
+  };
+  const submmit = () => {
+    if (isValid) {
+      <p>Password is valid!</p>;
+    } else {
+      <p>Password is invalid.</p>;
+    }
+  };
+
   const sideBar1 = useRef();
   const sideBar2 = useRef();
   const sideBar3 = useRef();
@@ -136,12 +156,12 @@ const Card = () => {
               Sports
               {showSideBar2 && (
                 <select className="sideBar_2" ref={sideBar2}>
-                  <option>Crime-Section</option>
-                  <option>Entertainment-Section</option>
-                  <option>Social-Affair</option>
-                  <option>Socialmedia-Section</option>
-                  <option>Viral-Video</option>
-                  <option>Quick-Updats</option>
+                  <option>Cricket-Section</option>
+                  <option>Football-Section</option>
+                  <option>Hocky-Section</option>
+                  <option>Tennis-Section</option>
+                  <option>IPL-Section</option>
+                  <option>Olampic-Section</option>
                 </select>
               )}
             </li>
@@ -152,12 +172,12 @@ const Card = () => {
               National News
               {showSideBar3 && (
                 <select className="sideBar_3" ref={sideBar3}>
-                  <option>Crime-Section</option>
-                  <option>Entertainment-Section</option>
-                  <option>Social-Affair</option>
-                  <option>Socialmedia-Section</option>
-                  <option>Viral-Video</option>
-                  <option>Quick-Updats</option>
+                  <option>National-Fairs</option>
+                  <option>National-Culteral-Event</option>
+                  <option>Social-Meetings</option>
+                  <option>National-NGO</option>
+                  <option>National-Drama</option>
+                  <option>National-Awards</option>
                 </select>
               )}
             </li>
@@ -168,12 +188,12 @@ const Card = () => {
               International News
               {showSideBar4 && (
                 <select className="sideBar_4" ref={sideBar4}>
-                  <option>Crime-Section</option>
-                  <option>Entertainment-Section</option>
-                  <option>Social-Affair</option>
-                  <option>Socialmedia-Section</option>
-                  <option>Viral-Video</option>
-                  <option>Quick-Updats</option>
+                  <option>International-Market</option>
+                  <option>International-Cooprations</option>
+                  <option>International-Meetings</option>
+                  <option>International-Conflicts</option>
+                  <option>International-Awards</option>
+                  <option>International-Trety</option>
                 </select>
               )}
             </li>
@@ -325,9 +345,14 @@ const Card = () => {
               <br />
               <input type="text" placeholder="ex-abc@gmail.com" /> <br /> <br />
               <strong>Password:</strong>
-              <input type="password" />
-              <input type="button" value="Submmit" />
+              <input type="password" value={password} onChange={handelChange} />
+              <input type="button" value="Submmit" onClick={submmit} />
               <br /> <br />
+              {isValid ? (
+                <p>Password is valid!</p>
+              ) : (
+                <p>Password is invalid.</p>
+              )}
               <h5>Forgrt Password?</h5> <br />
               <p>
                 <h5>Note:</h5>
