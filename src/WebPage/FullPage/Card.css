@@ -1,0 +1,43 @@
+.cardContainer {
+  width: 100%;
+  height: 480px;
+  display: grid;
+  grid-template-columns: 0.5fr 2fr 0.5fr;
+}
+.sideBar {
+  grid-row: 1/-1;
+  grid-column: 1/2;
+  padding-left: 15px;
+  background-color: rgb(196, 200, 226);
+}
+.sideContent {
+  padding-top: 30px;
+  padding-bottom: 100px;
+  padding-left: 10px;
+  background-color: rgb(168, 247, 221);
+}
+
+.sideContent fieldset {
+  background-color: black;
+  color: white;
+}
+.sideBar ul li {
+  list-style: none;
+  font-weight: bold;
+  padding-top: 20px;
+}
+.mainContent {
+  grid-row: 1/-1;
+  grid-column: 2/3;
+  background-color: rgb(182, 192, 252);
+}
+.sideContent {
+  grid-row: 1/-1;
+  grid-column: 3/4;
+  /*Grid layout for image gallery*/
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.sideBar-1 {
+  display: none;
+}
