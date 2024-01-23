@@ -18,8 +18,10 @@ const ReduxTask = () => {
     for (let i = 0; i < data.length; i++) {
       if (parseInt(searchKey) === data[i].id) {
         console.log("Item Founded !");
-      } else {
+      } else if (parseInt(searchKey) !== data[i].id) {
         console.log("Item not Founded !");
+      } else {
+        console.log("Please Enter Item !");
       }
     }
   };
