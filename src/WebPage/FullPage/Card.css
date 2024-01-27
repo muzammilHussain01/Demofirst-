@@ -1,8 +1,9 @@
 .cardContainer {
   width: 100%;
-  height: 500px;
+  height: fit-content;
   display: grid;
   grid-template-columns: 0.5fr 2fr 0.5fr;
+  padding-top: 55px;
 }
 .sideBar {
   grid-row: 1/-1;

@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   background-color: rgb(196, 200, 226);
+  margin-top: 5px;
 }
 .footerContainer1 {
   border-top: 2px solid gray;

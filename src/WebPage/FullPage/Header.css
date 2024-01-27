@@ -3,7 +3,7 @@
 
   background-color: rgb(139, 154, 240);
   border-bottom: 2px solid black;
-  position: relative;
+  position: fixed;
 }
 .list-1 {
   list-style: none;
