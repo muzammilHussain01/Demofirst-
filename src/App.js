@@ -6,6 +6,7 @@ import Page5 from "./WebPage/useContax/Page5";
 import Header from "./WebPage/FullPage/Header";
 import Card from "./WebPage/FullPage/Card";
 import Footer from "./WebPage/FullPage/Footer";
+import Form from "./Component/Form";
 
 const App = () => {
   /* const [divVisible, setDivVisible] = useState(true);
@@ -17,9 +18,11 @@ const App = () => {
   };*/
   return (
     <>
+      {/*
       <Header />
       <Card />
-      <Footer />
+      <Footer />*/}
+      <Form />
     </>
   );
 };
