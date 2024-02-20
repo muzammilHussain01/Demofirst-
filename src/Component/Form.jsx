@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Form.css";
+import Button from "@mui/material/Button";
 
 const FetchData = () => {
   const [isButtonDeActive, setButtonActive] = useState(false);
@@ -83,7 +84,38 @@ const FetchData = () => {
     localStorage.removeItem("formData");
   };
   const [studentInformation, setStudentInformation] = useState([]);
-  console.log(studentInformation);
+  const [slicedStuInfo, setSlicedStuInfo] = useState([]);
+  if (studentInformation.length <= 4) {
+  }
+  const showMoreButton = useRef(null);
+  const showLessButton = useRef(null);
+  const [sliceLength, setSliceLength] = useState(4);
+  const a = () => {
+    setSliceLength(sliceLength + 4);
+    console.log(sliceLength);
+    let oneClickSlicedStuInfo = studentInformation.slice(0, sliceLength);
+    console.log(oneClickSlicedStuInfo);
+    setSlicedStuInfo(oneClickSlicedStuInfo);
+    if (slicedStuInfo.length === studentInformation.length) {
+      if (showMoreButton.current) {
+        showMoreButton.current.style.display = "none";
+      }
+    }
+  };
+
+  const b = () => {
+    setSliceLength(sliceLength - 4);
+    console.log(sliceLength);
+    let oneClickSlicedStuInfo = studentInformation.slice(0, sliceLength);
+    setSlicedStuInfo(oneClickSlicedStuInfo);
+  };
+  /*if (slicedStuInfo.length === 4) {
+    if (showLessButton.current) {
+      showLessButton.current.style.display = "none";
+    } else {
+      showLessButton.current.style.display = "block";
+    }
+  }*/
   const showAllUserInfo = () => {
     const keys = Object.keys(localStorage);
     const arr = [];
@@ -94,31 +126,57 @@ const FetchData = () => {
     });
     setStudentInformation(arr);
 
-    //console.log(arr);
+    if (arr.length >= 4) {
+      if (showMoreButton.current && showLessButton.current) {
+        showMoreButton.current.style.display = "inline-block";
+        showLessButton.current.style.display = "inline-block";
+      }
+    } else {
+      if (showMoreButton.current && showLessButton.current) {
+        showMoreButton.current.style.display = "none";
+        showLessButton.current.style.display = "none";
+      }
+    }
   };
 
   return (
     <>
-      {studentInformation.map((stuInfo, index) => {
+      {slicedStuInfo.map((stuInfo, index) => {
         return (
-          <>
-            <div key={index}>
-              <table>
-                <tbody>
-                  <tr style={{ border: "2px solid black" }}>
-                    <td>{stuInfo.fname}</td>
-                    <td>{stuInfo.mname}</td>
-                    <td>{stuInfo.email}</td>
-                    <td>{stuInfo.Qualification}</td>
-                    <td>{stuInfo.hobbies}</td>
-                    <td>{stuInfo.address}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </>
+          <div key={index}>
+            <table>
+              <tbody>
+                <tr>
+                  <td>{stuInfo.fname}</td>
+                  <td>{stuInfo.mname}</td>
+                  <td>{stuInfo.email}</td>
+                  <td>{stuInfo.Qualification}</td>
+                  <td>{stuInfo.hobbies}</td>
+                  <td>{stuInfo.address}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         );
       })}
+      <Button
+        variant="outlined"
+        ref={showMoreButton}
+        style={{ display: "none" }}
+        onClick={a}
+      >
+        Show More
+      </Button>
+      <Button
+        variant="outlined"
+        color="error"
+        ref={showLessButton}
+        style={{ display: "none" }}
+        onClick={b}
+      >
+        Show Less
+      </Button>
+      <span style={{ float: "right" }}></span>
       <div className="formSection">
         <fieldset className="feildset">
           <legend>Input Form</legend>
