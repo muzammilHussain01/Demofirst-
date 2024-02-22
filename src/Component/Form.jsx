@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Form.css";
+import Buttons from "./Buttons";
 import Button from "@mui/material/Button";
 
-const FetchData = () => {
-  const [isButtonDeActive, setButtonActive] = useState(false);
+const FetchData = (props) => {
+  const [isButtonDeActive, setButtonActive] = useState(true); // Changed default state to true
   const [formData, setFormData] = useState({
     fname: "",
     mname: "",
@@ -49,17 +50,9 @@ const FetchData = () => {
     const key = "userInformation" + Date.now();
     // Storing form data into the local storage
     localStorage.setItem(key, JSON.stringify(formData));
-
-    const keys = Object.keys(localStorage);
-
-    const value = keys.forEach((key) => {
-      let value = localStorage.getItem(key);
-      JSON.parse(value);
-    });
-    console.log(value);
+    activeButton(); // Activate the button after submission
   };
 
-  //localStorage.clear();
   const onReset = () => {
     // Reset both formData and info
     setFormData({
@@ -82,60 +75,35 @@ const FetchData = () => {
 
     // Clear data from local storage
     localStorage.removeItem("formData");
+    activeButton(); // Activate the button after reset
   };
+
   const [studentInformation, setStudentInformation] = useState([]);
   const [slicedStuInfo, setSlicedStuInfo] = useState([]);
-  if (studentInformation.length <= 4) {
-  }
+  const [sliceLength, setSliceLength] = useState(4);
+
+  useEffect(() => {
+    setSlicedStuInfo(studentInformation.slice(0, sliceLength));
+  }, [studentInformation, sliceLength]);
+
   const showMoreButton = useRef(null);
   const showLessButton = useRef(null);
-  const [sliceLength, setSliceLength] = useState(4);
-  const a = () => {
+
+  const showMore = () => {
     setSliceLength(sliceLength + 4);
-    console.log(sliceLength);
-    let oneClickSlicedStuInfo = studentInformation.slice(0, sliceLength);
-    console.log(oneClickSlicedStuInfo);
-    setSlicedStuInfo(oneClickSlicedStuInfo);
-    if (slicedStuInfo.length === studentInformation.length) {
-      if (showMoreButton.current) {
-        showMoreButton.current.style.display = "none";
-      }
-    }
   };
 
-  const b = () => {
+  const showLess = () => {
     setSliceLength(sliceLength - 4);
-    console.log(sliceLength);
-    let oneClickSlicedStuInfo = studentInformation.slice(0, sliceLength);
-    setSlicedStuInfo(oneClickSlicedStuInfo);
   };
-  /*if (slicedStuInfo.length === 4) {
-    if (showLessButton.current) {
-      showLessButton.current.style.display = "none";
-    } else {
-      showLessButton.current.style.display = "block";
-    }
-  }*/
+
   const showAllUserInfo = () => {
     const keys = Object.keys(localStorage);
-    const arr = [];
-    keys.forEach((key) => {
-      let value = localStorage.getItem(key);
-
-      arr.push(JSON.parse(value));
-    });
+    const arr = keys.map((key) => JSON.parse(localStorage.getItem(key)));
     setStudentInformation(arr);
-
-    if (arr.length >= 4) {
-      if (showMoreButton.current && showLessButton.current) {
-        showMoreButton.current.style.display = "inline-block";
-        showLessButton.current.style.display = "inline-block";
-      }
-    } else {
-      if (showMoreButton.current && showLessButton.current) {
-        showMoreButton.current.style.display = "none";
-        showLessButton.current.style.display = "none";
-      }
+    if (arr.length >= 4 && showMoreButton.current && showLessButton.current) {
+      showMoreButton.current.style.display = "inline-block";
+      showLessButton.current.style.display = "inline-block";
     }
   };
 
@@ -159,23 +127,20 @@ const FetchData = () => {
           </div>
         );
       })}
-      <Button
-        variant="outlined"
-        ref={showMoreButton}
-        style={{ display: "none" }}
-        onClick={a}
-      >
-        Show More
-      </Button>
-      <Button
-        variant="outlined"
-        color="error"
-        ref={showLessButton}
-        style={{ display: "none" }}
-        onClick={b}
-      >
-        Show Less
-      </Button>
+      <Buttons
+        varients="outlined"
+        name="Show More"
+        showMoreButton={showMoreButton}
+        showMore={showMore}
+        styling={{ display: "none" }}
+      />
+      <Buttons
+        name="Show Less"
+        showMoreButton={showLessButton}
+        showMore={showLess}
+        styling={{ display: "none" }}
+      />
+
       <span style={{ float: "right" }}></span>
       <div className="formSection">
         <fieldset className="feildset">
@@ -271,6 +236,7 @@ const FetchData = () => {
           </form>
         </fieldset>
       </div>
+      {props.UserInfo}
 
       <p>First Name: {info.fname}</p>
       <p>Middle Name: {info.mname}</p>
