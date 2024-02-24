@@ -3,6 +3,7 @@ import React from "react";
 import StudentDataPage from "./Component/StudentDataPage";
 import Form from "./Component/Form";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import PageNotFoundPage from "./Component/PageNotFoundPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -11,6 +12,10 @@ const router = createBrowserRouter([
   {
     path: "/students",
     element: <StudentDataPage />,
+  },
+  {
+    path: "*",
+    element: <PageNotFoundPage />,
   },
 ]);
 function App() {
