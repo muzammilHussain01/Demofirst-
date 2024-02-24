@@ -1,30 +1,29 @@
-import React, { useState } from "react";
-import ReduxTask from "./WebPage/ReduxTask";
-import Reducer from "./WebPage/reducreHook/Reducer";
-import Page1 from "./WebPage/useContax/Page1";
-import Page5 from "./WebPage/useContax/Page5";
-import Header from "./WebPage/FullPage/Header";
-import Card from "./WebPage/FullPage/Card";
-import Footer from "./WebPage/FullPage/Footer";
+import React from "react";
+
+import { StudentDataPage } from "./Component/StudentDataPage";
+import StudentsPage from "./Component/StudentsPage";
 import Form from "./Component/Form";
 
-const App = () => {
-  /* const [divVisible, setDivVisible] = useState(true);
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Form />,
+  },
+  {
+    path: "/students",
+    element: <StudentsPage />,
+  },
+]);
 
-  const toggleDiv = () => {
-    setDivVisible(!divVisible);
-    <WebPage toggleDiv={toggleDiv} />
-      <Products divVisible={divVisible} />
-  };*/
+function App() {
   return (
-    <>
-      {/*
-      <Header />
-      <Card />
-      <Footer />*/}
-      <Form />
-    </>
+    <div className="App">
+      <StudentDataPage>
+        <RouterProvider router={router} />
+      </StudentDataPage>
+    </div>
   );
-};
+}
 
 export default App;
