@@ -1,39 +1,18 @@
-import React, { useContext } from "react";
-import { Student } from "./StudentDataPage";
-import StudentDetail from "./StudentDetail";
+import React from "react";
 
-const StudentsPage = () => {
-  const { studentRecords } = useContext(Student);
-
+const StudentsPage = (props) => {
   return (
     <>
-      <h1>Student Records</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Roll No</th>
-            <th>Qualification</th>
-            <th>Address</th>
-            <th>Email</th>
-            <th>Hobbies</th>
-          </tr>
-        </thead>
-        <tbody>
-          {studentRecords.map((info) => (
-            <tr>
-              <StudentDetail
-                fname={info.fname}
-                mname={info.mname}
-                Qualification={info.Qualification}
-                address={info.address}
-                email={info.email}
-                hobbies={info.hobbies}
-              />
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <tbody>
+        <tr>
+          <td>{props.firstName}</td>
+          <td>{props.middleName}</td>
+          <td>{props.address}</td>
+          <td>{props.email}</td>
+          <td>{props.hobbise}</td>
+          <td>{props.qualification}</td>
+        </tr>
+      </tbody>
     </>
   );
 };

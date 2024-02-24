@@ -1,9 +1,7 @@
 import React from "react";
 
-import { StudentDataPage } from "./Component/StudentDataPage";
-import StudentsPage from "./Component/StudentsPage";
+import StudentDataPage from "./Component/StudentDataPage";
 import Form from "./Component/Form";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const router = createBrowserRouter([
   {
@@ -12,18 +10,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/students",
-    element: <StudentsPage />,
+    element: <StudentDataPage />,
   },
 ]);
-
 function App() {
-  return (
-    <div className="App">
-      <StudentDataPage>
-        <RouterProvider router={router} />
-      </StudentDataPage>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

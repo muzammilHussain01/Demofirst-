@@ -1,25 +1,31 @@
-import React, { createContext, useState, useEffect } from "react";
-import StudentsPage from "./StudentsPage";
+import React, { useEffect, useState, createContext } from "react";
+import StudentDetail from "./StudentDetail";
 
-const Student = createContext();
-
+const Students = createContext();
+console.log(Students);
 const StudentDataPage = () => {
-  const [studentRecords, setStudentRecords] = useState([]);
-
+  const [studentInfo, setStudentInfo] = useState([]);
   useEffect(() => {
-    const storedStudentRecords = Object.keys(localStorage).map((key) =>
-      JSON.parse(localStorage.getItem(key))
-    );
-
-    //console.log(storedStudentRecords);
-    setStudentRecords(storedStudentRecords);
+    //Get keys from localstorage
+    let keys = Object.keys(localStorage);
+    // console.log(keys);
+    //maping data to corrosponding keys
+    let info = keys.map((data) => {
+      let stringData = localStorage.getItem(data); //getting values from local storage in string form
+      return JSON.parse(stringData); // converting string into array form
+    });
+    setStudentInfo(info);
   }, []);
+  // console.log(studentInfo);
 
   return (
-    <Student.Provider value={{ studentRecords }}>
-      <StudentsPage />
-    </Student.Provider>
+    <>
+      <Students.Provider value={studentInfo}>
+        <StudentDetail />
+      </Students.Provider>
+    </>
   );
 };
-//console.log(StudentContext);
-export { Student, StudentDataPage };
+
+export default StudentDataPage;
+export { Students };
