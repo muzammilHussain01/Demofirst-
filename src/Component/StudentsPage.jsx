@@ -1,5 +1,5 @@
 import React from "react";
-
+//ye child component hai StudentDetail page ka
 const StudentsPage = (props) => {
   return (
     <>
