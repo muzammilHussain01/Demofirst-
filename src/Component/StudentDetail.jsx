@@ -11,6 +11,9 @@ const StudentDetail = () => {
   const responsiveData = studentsInfo.filter((stu) => {
     return stu.fname.toLowerCase().includes(searchKeyword.toLowerCase()); // yaha par studentsInfo se data filter karke stu par one by one le rahe hai. uske baad fname ko le rahe hai. uske baad includes ka use kar ke searchKeyword ko fname se match kar rahe hai. agar match ho raha hai to return kar de rahe hai.
   });
+  const fun = () => {
+    alert("Button Clicked !");
+  };
 
   return (
     <>
@@ -29,6 +32,7 @@ const StudentDetail = () => {
           src={searchIcon}
           style={{ width: "25px" }}
           alt="search-logo"
+          onClick={fun}
         />
       </form>
       <table>
