@@ -7,6 +7,7 @@ const FetchData = (props) => {
   const showAllUsersButtonHandle = useRef("");
   const tableDisplay = useRef();
   const [isButtonDeActive, setButtonActive] = useState(true);
+  const [ShowAllUserButton, setShowAllUserButton] = useState(false);
   const [formData, setFormData] = useState({
     fname: "",
     mname: "",
@@ -59,6 +60,7 @@ const FetchData = (props) => {
       showMoreButton.current.style.display = "inline-block";
       showLessButton.current.style.display = "inline-block";
     }
+    setShowAllUserButton(true);
     showAllUsersButtonHandle.current.style.display = "none";
     tableDisplay.current.style.display = "block";
     tableDisplay.current.style.width = "100%";
@@ -249,10 +251,9 @@ const FetchData = (props) => {
       <Buttons
         varients="outlined"
         name="Show All User"
-        classNames="btn"
-        showMoreButton={showAllUsersButtonHandle}
+        disabl={ShowAllUserButton}
         showMore={showAllUserInfo}
-        styling={{ marginLeft: "500px", marginTop: "20px" }}
+        styling={{ marginLeft: "500px", marginTop: "20px", display: "block" }}
       />
 
       <StudentSingleInfo
