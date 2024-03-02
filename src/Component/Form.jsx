@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Form.css";
 import Buttons from "./Buttons";
-import Button from "@mui/material/Button";
+import StudentSingleInfo from "./StudentSingleInfo";
 
 const FetchData = (props) => {
-  const [isButtonDeActive, setButtonActive] = useState(true); // Changed default state to true
+  const showAllUsersButtonHandle = useRef("");
+  const tableDisplay = useRef();
+  const [isButtonDeActive, setButtonActive] = useState(true);
   const [formData, setFormData] = useState({
     fname: "",
     mname: "",
@@ -23,64 +25,16 @@ const FetchData = (props) => {
     address: "",
   });
 
+  const [studentInformation, setStudentInformation] = useState([]);
+  const [slicedStuInfo, setSlicedStuInfo] = useState([]);
+  const [sliceLength, setSliceLength] = useState(4);
+
   useEffect(() => {
-    // Retrieve data from local storage when the component mounts
     const storedData = JSON.parse(localStorage.getItem("formData"));
     if (storedData) {
       setInfo(storedData);
     }
   }, []);
-
-  // activate the button
-  const activeButton = () => {
-    setButtonActive(false);
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const onSubmit = () => {
-    // Copy the data from formData to info
-    setInfo({ ...formData });
-    const key = "userInformation" + Date.now();
-    // Storing form data into the local storage
-    localStorage.setItem(key, JSON.stringify(formData));
-    activeButton(); // Activate the button after submission
-  };
-
-  const onReset = () => {
-    // Reset both formData and info
-    setFormData({
-      fname: "",
-      mname: "",
-      email: "",
-      Qualification: "",
-      hobbies: "",
-      address: "",
-    });
-
-    setInfo({
-      fname: "",
-      mname: "",
-      email: "",
-      Qualification: "",
-      hobbies: "",
-      address: "",
-    });
-
-    // Clear data from local storage
-    localStorage.removeItem("formData");
-    activeButton(); // Activate the button after reset
-  };
-
-  const [studentInformation, setStudentInformation] = useState([]);
-  const [slicedStuInfo, setSlicedStuInfo] = useState([]);
-  const [sliceLength, setSliceLength] = useState(4);
 
   useEffect(() => {
     setSlicedStuInfo(studentInformation.slice(0, sliceLength));
@@ -105,46 +59,60 @@ const FetchData = (props) => {
       showMoreButton.current.style.display = "inline-block";
       showLessButton.current.style.display = "inline-block";
     }
+    showAllUsersButtonHandle.current.style.display = "none";
+    tableDisplay.current.style.display = "block";
+    tableDisplay.current.style.width = "100%";
+  };
+
+  const activeButton = () => {
+    setButtonActive(false);
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const onSubmit = () => {
+    setInfo({ ...formData });
+    const key = "userInformation" + Date.now();
+    localStorage.setItem(key, JSON.stringify(formData));
+    activeButton();
+    showAllUsersButtonHandle.current.style.display = "block";
+  };
+
+  const onReset = () => {
+    setFormData({
+      fname: "",
+      mname: "",
+      email: "",
+      Qualification: "",
+      hobbies: "",
+      address: "",
+    });
+
+    setInfo({
+      fname: "",
+      mname: "",
+      email: "",
+      Qualification: "",
+      hobbies: "",
+      address: "",
+    });
+
+    localStorage.removeItem("formData");
+    activeButton();
   };
 
   return (
     <>
-      {slicedStuInfo.map((stuInfo, index) => {
-        return (
-          <div key={index}>
-            <table>
-              <tbody>
-                <tr>
-                  <td>{stuInfo.fname}</td>
-                  <td>{stuInfo.mname}</td>
-                  <td>{stuInfo.email}</td>
-                  <td>{stuInfo.Qualification}</td>
-                  <td>{stuInfo.hobbies}</td>
-                  <td>{stuInfo.address}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        );
-      })}
-      <Buttons
-        varients="outlined"
-        name="Show More"
-        showMoreButton={showMoreButton}
-        showMore={showMore}
-        styling={{ display: "none" }}
-      />
-      <Buttons
-        name="Show Less"
-        showMoreButton={showLessButton}
-        showMore={showLess}
-        styling={{ display: "none" }}
-      />
-
       <span style={{ float: "right" }}></span>
       <div className="formSection">
         <fieldset className="feildset">
-          <legend>Input Form</legend>
+          <h3>Registration Form</h3>
           <form className="inputForm">
             First Name: <br />
             <input
@@ -214,36 +182,99 @@ const FetchData = (props) => {
               onClick={activeButton}
             />
             <br /> <br />
-            <input
-              className="button"
-              type="button"
-              value="Submit"
-              onClick={onSubmit}
-              disabled={isButtonDeActive}
+            <Buttons
+              varients="outlined"
+              name="Submit"
+              showMore={onSubmit}
+              disabl={isButtonDeActive}
+              styling={{
+                backgroundColor: "rgb(77, 123, 184)",
+                color: "#fff",
+                marginRight: "20px",
+              }}
             />
-            <input
-              className="button"
-              type="button"
-              value="Reset"
-              onClick={onReset}
-              disabled={isButtonDeActive}
-            />
-            <input
-              type="button"
-              value="Show All User"
-              onClick={showAllUserInfo}
+            <Buttons
+              varients="outlined"
+              name="Reset"
+              showMore={onReset}
+              disabl={isButtonDeActive}
+              styling={{
+                backgroundColor: "rgb(230, 117, 117)",
+                color: "#fff",
+              }}
             />
           </form>
         </fieldset>
       </div>
-      {props.UserInfo}
 
-      <p>First Name: {info.fname}</p>
-      <p>Middle Name: {info.mname}</p>
-      <p>Email: {info.email}</p>
-      <p>Qualification: {info.Qualification}</p>
-      <p>Hobbies: {info.hobbies}</p>
-      <p>Address: {info.address}</p>
+      <table className="tableStyling" ref={tableDisplay}>
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Middle Name</th>
+            <th>Email Address</th>
+            <th>Qualification</th>
+            <th>Hobbies</th>
+            <th>Address</th>
+          </tr>
+        </thead>
+        {slicedStuInfo.map((stuInfo, index) => (
+          <tbody key={index}>
+            <tr>
+              <td>{stuInfo.fname}</td>
+              <td>{stuInfo.mname}</td>
+              <td>{stuInfo.email}</td>
+              <td>{stuInfo.Qualification}</td>
+              <td>{stuInfo.hobbies}</td>
+              <td>{stuInfo.address}</td>
+            </tr>
+          </tbody>
+        ))}
+        <Buttons
+          varients="outlined"
+          name="Show More"
+          showMoreButton={showMoreButton}
+          showMore={showMore}
+          styling={{ display: "none" }}
+        />
+
+        <Buttons
+          varients="outlined"
+          name="Show Less"
+          showMoreButton={showLessButton}
+          showMore={showLess}
+          styling={{ display: "none" }}
+        />
+      </table>
+      <Buttons
+        varients="outlined"
+        name="Show All User"
+        classNames="btn"
+        showMoreButton={showAllUsersButtonHandle}
+        showMore={showAllUserInfo}
+        styling={{ marginLeft: "500px", marginTop: "20px" }}
+      />
+
+      <StudentSingleInfo
+        cardClassName="singleInfoCard"
+        refrence={showAllUsersButtonHandle}
+        firstNmae={info.fname}
+        middleName={info.mname}
+        mail={info.email}
+        qualific={info.Qualification}
+        hobbs={info.hobbies}
+        addres={info.address}
+        style={{ display: "none" }}
+      />
+      <div className="singleInfoCard" ref={showAllUsersButtonHandle}>
+        <p>
+          Name: {info.fname} {info.mname}
+        </p>
+        <p>Email: {info.email}</p>
+        <p>Qualification: {info.Qualification}</p>
+        <p>Hobbies: {info.hobbies}</p>
+        <p>Address: {info.address}</p>
+      </div>
     </>
   );
 };

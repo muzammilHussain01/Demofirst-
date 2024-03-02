@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Students } from "./StudentDataPage";
 import StudentsPage from "./StudentsPage";
 import searchIcon from "../WebPage/logo/searchIcon.png";
+import "./Form.css";
 //ye chileren hai StudentDataPage page ka
 const StudentDetail = () => {
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -30,12 +31,12 @@ const StudentDetail = () => {
         <input
           type="image"
           src={searchIcon}
-          style={{ width: "25px" }}
           alt="search-logo"
           onClick={fun}
+          style={{ width: "30px", backgroundColor: "white" }}
         />
       </form>
-      <table>
+      <table className="secondTableStyling">
         <thead>
           <tr>
             <th>Fname</th>

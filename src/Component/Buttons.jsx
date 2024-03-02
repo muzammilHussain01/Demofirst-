@@ -8,9 +8,9 @@ const Buttons = (props) => {
         ref={props.showMoreButton}
         style={props.styling}
         onClick={props.showMore}
+        disabled={props.disabl}
       >
         {props.name}
-        Show More
       </Button>
     </>
   );
