@@ -6,6 +6,8 @@ import StudentSingleInfo from "./StudentSingleInfo";
 const FetchData = (props) => {
   const showAllUsersButtonHandle = useRef("");
   const tableDisplay = useRef();
+  const showMoreButton = useRef(null);
+  const showLessButton = useRef(null);
   const [isButtonDeActive, setButtonActive] = useState(true);
   const [ShowAllUserButton, setShowAllUserButton] = useState(false);
   const [formData, setFormData] = useState({
@@ -40,9 +42,6 @@ const FetchData = (props) => {
   useEffect(() => {
     setSlicedStuInfo(studentInformation.slice(0, sliceLength));
   }, [studentInformation, sliceLength]);
-
-  const showMoreButton = useRef(null);
-  const showLessButton = useRef(null);
 
   const showMore = () => {
     setSliceLength(sliceLength + 4);
