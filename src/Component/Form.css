@@ -84,7 +84,7 @@
   color: black;
   display: none;
 }
-@media (max-width: 425px) {
+@media (max-width: 320px) {
   /* CSS for max-width: 425px */
   .feildset {
     width: 60%;
