@@ -5,9 +5,9 @@
 
 /* css for feildset*/
 .feildset {
-  width: 22%;
+  width: 300px;
   background-color: rgb(231, 215, 215);
-  margin-left: 500px;
+  margin: auto;
   margin-top: 20px;
   border-radius: 10px;
 }
@@ -83,4 +83,21 @@
   box-shadow: 10px 0px 5px 0px rgba(46, 125, 228, 0.5);
   color: black;
   display: none;
+}
+@media (max-width: 425px) {
+  /* CSS for max-width: 425px */
+  .feildset {
+    width: 60%;
+    margin: 20px auto;
+  }
+
+  .btn {
+    width: 60%;
+    margin: 20px auto;
+    text-align: center;
+  }
+  .tableStyling {
+    width: 90%;
+    margin: 20px auto;
+  }
 }

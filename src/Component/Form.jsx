@@ -110,7 +110,6 @@ const FetchData = (props) => {
 
   return (
     <>
-      <span style={{ float: "right" }}></span>
       <div className="formSection">
         <fieldset className="feildset">
           <h3>Registration Form</h3>
@@ -206,74 +205,82 @@ const FetchData = (props) => {
             />
           </form>
         </fieldset>
-      </div>
 
-      <table className="tableStyling" ref={tableDisplay}>
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Middle Name</th>
-            <th>Email Address</th>
-            <th>Qualification</th>
-            <th>Hobbies</th>
-            <th>Address</th>
-          </tr>
-        </thead>
-        {slicedStuInfo.map((stuInfo, index) => (
-          <tbody key={index}>
+        <table className="tableStyling" ref={tableDisplay}>
+          <thead>
             <tr>
-              <td>{stuInfo.fname}</td>
-              <td>{stuInfo.mname}</td>
-              <td>{stuInfo.email}</td>
-              <td>{stuInfo.Qualification}</td>
-              <td>{stuInfo.hobbies}</td>
-              <td>{stuInfo.address}</td>
+              <th>First Name</th>
+              <th>Middle Name</th>
+              <th>Email Address</th>
+              <th>Qualification</th>
+              <th>Hobbies</th>
+              <th>Address</th>
             </tr>
-          </tbody>
-        ))}
-        <Buttons
-          varients="outlined"
-          name="Show More"
-          showMoreButton={showMoreButton}
-          showMore={showMore}
-          styling={{ display: "none" }}
-        />
+          </thead>
+          {slicedStuInfo.map((stuInfo, index) => (
+            <tbody key={index}>
+              <tr>
+                <td>{stuInfo.fname}</td>
+                <td>{stuInfo.mname}</td>
+                <td>{stuInfo.email}</td>
+                <td>{stuInfo.Qualification}</td>
+                <td>{stuInfo.hobbies}</td>
+                <td>{stuInfo.address}</td>
+              </tr>
+            </tbody>
+          ))}
+          <Buttons
+            varients="outlined"
+            name="Show More"
+            showMoreButton={showMoreButton}
+            showMore={showMore}
+            styling={{ display: "none" }}
+          />
 
-        <Buttons
-          varients="outlined"
-          name="Show Less"
-          showMoreButton={showLessButton}
-          showMore={showLess}
-          styling={{ display: "none" }}
-        />
-      </table>
-      <Buttons
-        varients="outlined"
-        name="Show All User"
-        disabl={ShowAllUserButton}
-        showMore={showAllUserInfo}
-        styling={{ marginLeft: "500px", marginTop: "20px", display: "block" }}
-      />
+          <Buttons
+            varients="outlined"
+            name="Show Less"
+            showMoreButton={showLessButton}
+            showMore={showLess}
+            styling={{ display: "none" }}
+          />
+        </table>
+        <section className="btn">
+          <Buttons
+            className="showAllUserButton"
+            varients="outlined"
+            name="Show All User"
+            disabl={ShowAllUserButton}
+            showMore={showAllUserInfo}
+            styling={{
+              marginLeft: "auto",
+              marginRight: "auto",
+              marginTop: "20px",
+              display: "block",
+            }}
+          />
+        </section>
 
-      <StudentSingleInfo
-        cardClassName="singleInfoCard"
-        refrence={showAllUsersButtonHandle}
-        firstNmae={info.fname}
-        middleName={info.mname}
-        mail={info.email}
-        qualific={info.Qualification}
-        hobbs={info.hobbies}
-        addres={info.address}
-        style={{ display: "none" }}
-      />
-      <div className="singleInfoCard" ref={showAllUsersButtonHandle}>
-        <p>
-          Name: {info.fname} {info.mname}
-        </p>
-        <p>Email: {info.email}</p>
-        <p>Qualification: {info.Qualification}</p>
-        <p>Hobbies: {info.hobbies}</p>
-        <p>Address: {info.address}</p>
+        <StudentSingleInfo
+          cardClassName="singleInfoCard"
+          refrence={showAllUsersButtonHandle}
+          firstNmae={info.fname}
+          middleName={info.mname}
+          mail={info.email}
+          qualific={info.Qualification}
+          hobbs={info.hobbies}
+          addres={info.address}
+          style={{ display: "none" }}
+        />
+        <div className="singleInfoCard" ref={showAllUsersButtonHandle}>
+          <p>
+            Name: {info.fname} {info.mname}
+          </p>
+          <p>Email: {info.email}</p>
+          <p>Qualification: {info.Qualification}</p>
+          <p>Hobbies: {info.hobbies}</p>
+          <p>Address: {info.address}</p>
+        </div>
       </div>
     </>
   );
