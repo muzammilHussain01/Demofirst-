@@ -48,10 +48,12 @@
   width: fit-content;
   display: none;
 }
+
 .tableStyling thead tr th {
   color: rgb(141, 78, 78);
   background-color: rgb(222, 227, 230);
   font-size: medium;
+  width: 5%;
 }
 .tableStyling tbody tr td {
   color: red;
@@ -84,7 +86,7 @@
   color: black;
   display: none;
 }
-@media (max-width: 320px) {
+@media (max-width: 425px) {
   /* CSS for max-width: 425px */
   .feildset {
     width: 60%;
@@ -99,5 +101,8 @@
   .tableStyling {
     width: 90%;
     margin: 20px auto;
+  }
+  .tableStyling thead tr th {
+    width: 0.05%;
   }
 }

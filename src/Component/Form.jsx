@@ -6,8 +6,6 @@ import StudentSingleInfo from "./StudentSingleInfo";
 const FetchData = (props) => {
   const showAllUsersButtonHandle = useRef("");
   const tableDisplay = useRef();
-  const showMoreButton = useRef(null);
-  const showLessButton = useRef(null);
   const [isButtonDeActive, setButtonActive] = useState(true);
   const [ShowAllUserButton, setShowAllUserButton] = useState(false);
   const [formData, setFormData] = useState({
@@ -55,10 +53,7 @@ const FetchData = (props) => {
     const keys = Object.keys(localStorage);
     const arr = keys.map((key) => JSON.parse(localStorage.getItem(key)));
     setStudentInformation(arr);
-    if (arr.length >= 4 && showMoreButton.current && showLessButton.current) {
-      showMoreButton.current.style.display = "inline-block";
-      showLessButton.current.style.display = "inline-block";
-    }
+
     setShowAllUserButton(true);
     showAllUsersButtonHandle.current.style.display = "none";
     tableDisplay.current.style.display = "block";
@@ -229,21 +224,9 @@ const FetchData = (props) => {
               </tr>
             </tbody>
           ))}
-          <Buttons
-            varients="outlined"
-            name="Show More"
-            showMoreButton={showMoreButton}
-            showMore={showMore}
-            styling={{ display: "none" }}
-          />
+          <Buttons varients="outlined" name="Show More" showMore={showMore} />
 
-          <Buttons
-            varients="outlined"
-            name="Show Less"
-            showMoreButton={showLessButton}
-            showMore={showLess}
-            styling={{ display: "none" }}
-          />
+          <Buttons varients="outlined" name="Show Less" showMore={showLess} />
         </table>
         <section className="btn">
           <Buttons
