@@ -13,6 +13,7 @@ const MedicineList = () => {
         const response = await axios.get(
           "https://my.api.mockaroo.com/users.json?key=a154d0a0"
         );
+        // console.log(response.data);
         setMedicines(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -65,7 +66,7 @@ const MedicineList = () => {
           }}
         >
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Medicine Details
+            <strong>Medicine Details</strong>
           </Typography>
           {selectedMedicine.map((a) => {
             return (
