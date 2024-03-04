@@ -4,23 +4,29 @@ import StudentDataPage from "./Component/StudentDataPage";
 import Form from "./Component/Form";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PageNotFoundPage from "./Component/PageNotFoundPage";
+import MedicineList from "./Component/MedicineList";
 //yaha par path define hai har page ke
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Form />,
-  },
-  {
-    path: "/students",
-    element: <StudentDataPage />,
-  },
-  {
-    path: "*",
-    element: <PageNotFoundPage />,
-  },
-]);
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <Form />,
+//   },
+//   {
+//     path: "/students",
+//     element: <StudentDataPage />,
+//   },
+//   {
+//     path: "*",
+//     element: <PageNotFoundPage />,
+//   },
+// ]);
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <MedicineList />
+      {/* <RouterProvider router={router} /> */}
+    </>
+  );
 }
 
 export default App;
