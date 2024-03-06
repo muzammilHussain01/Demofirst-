@@ -5,6 +5,7 @@ import Form from "./Component/Form";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PageNotFoundPage from "./Component/PageNotFoundPage";
 import MedicineList from "./Component/MedicineList";
+import Tabel from "./Component/Tabel";
 //yaha par path define hai har page ke
 // const router = createBrowserRouter([
 //   {
@@ -23,7 +24,8 @@ import MedicineList from "./Component/MedicineList";
 function App() {
   return (
     <>
-      <MedicineList />
+      <Tabel />
+      {/* <MedicineList /> */}
       {/* <RouterProvider router={router} /> */}
     </>
   );
