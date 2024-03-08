@@ -26,3 +26,6 @@
   grid-row: 0 span / 1;
   grid-column: 0 span / 1;
 }*/
+* {
+  background-color: rgb(83, 129, 245);
+}

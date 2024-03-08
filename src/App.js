@@ -6,6 +6,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PageNotFoundPage from "./Component/PageNotFoundPage";
 import MedicineList from "./Component/MedicineList";
 import Tabel from "./Component/Tabel";
+import MUItab from "./Component/MUItab";
+//import AlertDialogSlide from "./Component/Delete";
+
 //yaha par path define hai har page ke
 // const router = createBrowserRouter([
 //   {
@@ -24,7 +27,9 @@ import Tabel from "./Component/Tabel";
 function App() {
   return (
     <>
-      <Tabel />
+      {/* <AlertDialogSlide /> */}
+      <MUItab />
+      {/* <Tabel /> */}
       {/* <MedicineList /> */}
       {/* <RouterProvider router={router} /> */}
     </>

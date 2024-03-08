@@ -83,10 +83,10 @@ const Tabel = () => {
 
   return (
     <>
-      <div style={{ margin: "15px" }}>
+      <div style={{ margin: "5px", backgroundColor: "rgb(191, 244, 244)" }}>
         <div className="row justify-content-end">
           <div className="col-auto">
-            <div className="input-group" style={{ margin: "5px" }}>
+            <div className="input-group">
               <input
                 type="text"
                 className="form-control"
@@ -130,7 +130,11 @@ const Tabel = () => {
               {medicine.map((med, index) => (
                 <tr key={index}>
                   <td>
-                    <Button variant="text" onClick={() => handleOpen(med)}>
+                    <Button
+                      variant="text"
+                      onClick={() => handleOpen(med)}
+                      style={{ textAlign: "left" }}
+                    >
                       {med.name}
                     </Button>
                   </td>
@@ -153,13 +157,24 @@ const Tabel = () => {
         <Button
           ref={preBtnRef}
           variant="outlined"
-          style={{ marginRight: "10px" }}
           onClick={previousBtn}
+          style={{
+            marginRight: "10px",
+            backgroundColor: "rgb(83, 129, 245)",
+            color: "black",
+          }}
         >
           Prev..
         </Button>
-        <Button variant="outlined" onClick={nextBtn}>
-          Next{" "}
+        <Button
+          variant="outlined"
+          onClick={nextBtn}
+          style={{
+            backgroundColor: "rgb(83, 129, 245)",
+            color: "black",
+          }}
+        >
+          Next
         </Button>
       </div>
 
@@ -176,14 +191,15 @@ const Tabel = () => {
             left: "50%",
             transform: "translate(-50%, -50%)",
             width: 400,
-            bgcolor: "background.paper",
-            border: "2px solid #000",
-            boxShadow: 24,
+            bgcolor: "rgb(191, 244, 244)",
+            border: "2px solid rgb(191, 244, 244)",
+            borderRadius: 8,
+            boxShadow: 10,
             p: 4,
           }}
         >
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            About {singleMedName.name}
+            <strong> About {singleMedName.name} </strong>
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque
