@@ -71,6 +71,13 @@ function DataTable() {
           columns={columns}
           pageSize={5}
           checkboxSelection
+          disableSelectionOnClick
+          onCellClick={(params, event) => {
+            if (event.target.type === "checkbox") {
+              return;
+            }
+            event.stopPropagation();
+          }}
         />
       </div>
     </>
