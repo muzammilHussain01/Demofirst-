@@ -60,7 +60,7 @@ function DataTable() {
   ];
 
   return (
-    <>
+    <div>
       <SearchBar
         onChange={(event) => setSearchKey(event.target.value)}
         onClick={handleSearch}
@@ -80,7 +80,7 @@ function DataTable() {
           }}
         />
       </div>
-    </>
+    </div>
   );
 }
 

@@ -19,14 +19,15 @@ function SearchBar(props) {
   return (
     <div
       style={{
-        marginLeft: "82%",
+        marginLeft: "80%",
         marginTop: "15px",
         marginBottom: "10px",
-        transform: isFocused ? "scale(1.05)" : "scale(1)",
-        transition: "transform 0.1s",
+        transform: isFocused ? "scale(1.009)" : "scale(1)",
       }}
     >
       <Paper
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         component="form"
         sx={{
           p: "2px 4px",
@@ -37,8 +38,8 @@ function SearchBar(props) {
         }}
       >
         <InputBase
-          onFocus={handleFocus}
-          onBlur={handleBlur}
+          // onFocus={handleFocus}
+          // onBlur={handleBlur}
           sx={{ ml: 1, flex: 1 }}
           placeholder="Search..."
           inputProps={{ "aria-label": "search google maps" }}

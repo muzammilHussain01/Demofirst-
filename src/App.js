@@ -7,6 +7,7 @@ import PageNotFoundPage from "./Component/PageNotFoundPage";
 import MedicineList from "./Component/MedicineList";
 import Tabel from "./Component/Tabel";
 import MUItab from "./Component/MUItab";
+import Table from "./Component/com/Table";
 //import AlertDialogSlide from "./Component/Delete";
 
 //yaha par path define hai har page ke
@@ -27,8 +28,9 @@ import MUItab from "./Component/MUItab";
 function App() {
   return (
     <>
+      <Table />
       {/* <AlertDialogSlide /> */}
-      <MUItab />
+      {/* <MUItab /> */}
       {/* <Tabel /> */}
       {/* <MedicineList /> */}
       {/* <RouterProvider router={router} /> */}
