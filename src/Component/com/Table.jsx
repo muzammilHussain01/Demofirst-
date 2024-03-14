@@ -1,4 +1,3 @@
-// BasicTable.js
 import React, { useEffect, useState, useRef } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -27,25 +26,45 @@ export default function BasicTable() {
   const [searchByPrice, setSearchByPrice] = useState("");
   const [searchByQuantity, setSearchByQuantity] = useState("");
   const [indexStart, setIndexStart] = useState();
-  const [indexEnd, setIndexEnd] = useState();
-  const [selectedPages, setSelectedPages] = useState({});
+  const [indexEnd, setIndexEnd] = useState("");
   const [allSearch, setAllSearch] = useState("");
   const [dropdownData, setDropdownData] = useState(5);
   const toggleTotalSelectedRow = useRef();
 
-  const totalSelectedRow = selectedRows.length;
+  const [selectedPages, setSelectedPages] = useState({});
+
+  const getTotalSelectedRows = () => {
+    let totalSelected = 0;
+    for (const pageRows of Object.values(selectedPages)) {
+      totalSelected += pageRows.length;
+    }
+    return totalSelected;
+  };
+
+  useEffect(() => {
+    if (toggleTotalSelectedRow.current && getTotalSelectedRows() > 0) {
+      toggleTotalSelectedRow.current.style.display = "block";
+    } else if (toggleTotalSelectedRow.current && getTotalSelectedRows() === 0) {
+      toggleTotalSelectedRow.current.style.display = "none";
+    }
+  }, [selectedPages]);
+
+  useEffect(() => {
+    const startIndex = (currentPage - 1) * dropdownData;
+    const endIndex = startIndex + dropdownData;
+    setPerPageData(rowss.slice(startIndex, endIndex));
+    setIndexStart(startIndex + 1);
+    setIndexEnd(endIndex);
+    setSelectedRows(selectedPages[currentPage] || []);
+    // Check if all rows on current page are selected
+    const allRowsSelected =
+      selectedPages[currentPage]?.length === perPageData.length;
+    setSelectAll(allRowsSelected);
+  }, [currentPage, dropdownData, selectedPages]);
 
   const handleChange = (event) => {
     setDropdownData(event.target.value);
   };
-
-  useEffect(() => {
-    if (toggleTotalSelectedRow.current && totalSelectedRow > 0) {
-      toggleTotalSelectedRow.current.style.display = "block";
-    } else if (toggleTotalSelectedRow.current) {
-      toggleTotalSelectedRow.current.style.display = "none";
-    }
-  }, [totalSelectedRow]);
 
   useEffect(() => {
     let searchResult = [...rowss];
@@ -77,7 +96,6 @@ export default function BasicTable() {
       );
     }
 
-    // Check if the search box is empty
     if (
       searchID === "" &&
       allSearch === "" &&
@@ -85,7 +103,6 @@ export default function BasicTable() {
       searchByPrice === "" &&
       searchByQuantity === ""
     ) {
-      // If dropdownData is not null, slice the rowss array according to dropdownData
       if (dropdownData) {
         const startIndex = (currentPage - 1) * dropdownData;
         const endIndex = startIndex + dropdownData;
@@ -93,7 +110,6 @@ export default function BasicTable() {
         setIndexStart(startIndex + 1);
         setIndexEnd(endIndex);
       } else {
-        // If dropdownData is null, show all data
         searchResult = rowss;
       }
     }
@@ -108,16 +124,6 @@ export default function BasicTable() {
     dropdownData,
     currentPage,
   ]);
-
-  useEffect(() => {
-    const startIndex = (currentPage - 1) * dropdownData;
-    const endIndex = startIndex + dropdownData;
-    setPerPageData(rowss.slice(startIndex, endIndex));
-    setIndexStart(startIndex + 1);
-    setIndexEnd(endIndex);
-    setSelectAll(false);
-    setSelectedRows(selectedPages[currentPage] || []);
-  }, [currentPage, dropdownData]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -151,7 +157,8 @@ export default function BasicTable() {
     }
 
     setSelectedRows(newSelected);
-    setSelectAll(newSelected.length === perPageData.length);
+    const allRowsSelected = newSelected.length === perPageData.length;
+    setSelectAll(allRowsSelected);
     setSelectedPages({ ...selectedPages, [currentPage]: newSelected });
   };
 
@@ -192,7 +199,7 @@ export default function BasicTable() {
       <div className="firestDiv">
         <section className="left-section">
           <section ref={toggleTotalSelectedRow}>
-            <p>{`Selected Rows: ${totalSelectedRow}`}</p>
+            <p>{`Selected Rows: ${getTotalSelectedRows()}`}</p>
           </section>
           <SelectVariants value={dropdownData} onChange={handleChange} />
         </section>
@@ -204,15 +211,16 @@ export default function BasicTable() {
             </strong>
           </li>
           <li>
-            <Button
-              variant="outlined"
-              className="button"
-              sx={{ color: "gray", marginBottom: "10px" }}
-            >
-              + Add Medicine
-            </Button>
+            <a href="http://localhost:3000/addMedcinePage">
+              <Button
+                variant="outlined"
+                className="button"
+                sx={{ color: "gray", marginBottom: "10px" }}
+              >
+                + Add Medicine
+              </Button>
+            </a>
           </li>
-          <li></li>
         </ul>
       </div>
 
@@ -221,14 +229,7 @@ export default function BasicTable() {
           <TableHead className="tableHead">
             <TableRow>
               <TableCell>
-                <Checkbox
-                  checked={selectAll}
-                  indeterminate={
-                    selectedRows.length > 0 &&
-                    selectedRows.length < perPageData.length
-                  }
-                  onChange={handleSelectAll}
-                />
+                <Checkbox checked={selectAll} onChange={handleSelectAll} />
               </TableCell>
               <TableCell>
                 ID <br />
@@ -288,6 +289,7 @@ export default function BasicTable() {
           </TableBody>
         </Table>
       </TableContainer>
+
       <div className="containerPaginationOutlined">
         <PaginationOutlined
           totalPages={Math.ceil(rowss.length / dropdownData)}
