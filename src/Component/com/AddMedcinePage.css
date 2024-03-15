@@ -1,0 +1,39 @@
+/* const useStyles = makeStyles((theme) => ({
+    form: {
+      maxWidth: 600,
+      margin: "auto",
+      padding: theme.spacing(2),
+      border: `1px solid ${theme.palette.primary.main}`,
+      borderRadius: theme.shape.borderRadius,
+      boxShadow: theme.shadows[3],
+      backgroundColor: theme.palette.background.paper,
+    },
+    inputField: {
+      marginBottom: theme.spacing(2),
+    },
+    submitButton: {
+      marginTop: theme.spacing(2),
+    },
+  })); */
+/* * {
+  margin: 10px;
+} */
+.formLable {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 30%;
+  font-weight: bolder;
+  font-size: x-large;
+
+  color: blue;
+}
+.form {
+  border: 1px solid blue;
+  border-radius: 10px;
+  width: 50%;
+  margin: auto;
+  padding: 20px;
+}
+.form:hover {
+  background-color: rgb(246, 246, 248);
+}

@@ -40,7 +40,7 @@ export default function BasicTable() {
     }
     return totalSelected;
   };
-
+  console.log(rowss);
   useEffect(() => {
     if (toggleTotalSelectedRow.current && getTotalSelectedRows() > 0) {
       toggleTotalSelectedRow.current.style.display = "block";
@@ -281,8 +281,8 @@ export default function BasicTable() {
                 <TableCell component="th" scope="row">
                   {row.id}
                 </TableCell>
-                <TableCell>{row.name}</TableCell>
-                <TableCell align="right">{row.price}</TableCell>
+                <TableCell>{row.medicineName}</TableCell>
+                <TableCell align="right">{row.salePrice}</TableCell>
                 <TableCell align="right">{row.quantity}</TableCell>
               </TableRow>
             ))}

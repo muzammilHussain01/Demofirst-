@@ -29,4 +29,3 @@ export default function SelectVariants(props) {
     </div>
   );
 }
-// export { age };
