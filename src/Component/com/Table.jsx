@@ -11,12 +11,26 @@ import PaginationOutlined from "./PaginationOutlined";
 import "./table.css";
 import SelectVariants from "./SelectVariants";
 import Button from "@mui/material/Button";
-
-import rowss from "./Data";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import GridOnIcon from "@mui/icons-material/GridOn";
 
 export default function BasicTable() {
+  const [rowss, setRowss] = useState(() => {
+    const localStorageKeys = Object.keys(localStorage);
+    const information = localStorageKeys.map((key) => {
+      return JSON.parse(localStorage.getItem(key));
+    });
+    return information;
+  });
+
+  useEffect(() => {
+    const localStorageKeys = Object.keys(localStorage);
+    const information = localStorageKeys.map((key) => {
+      return JSON.parse(localStorage.getItem(key));
+    });
+    setRowss(information);
+  }, []);
+
   const [selectAll, setSelectAll] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
   const [perPageData, setPerPageData] = useState([]);
@@ -32,6 +46,7 @@ export default function BasicTable() {
   const toggleTotalSelectedRow = useRef();
 
   const [selectedPages, setSelectedPages] = useState({});
+  const [allSelectedRows, setAllSelectedRows] = useState([]);
 
   const getTotalSelectedRows = () => {
     let totalSelected = 0;
@@ -40,7 +55,7 @@ export default function BasicTable() {
     }
     return totalSelected;
   };
-  console.log(rowss);
+
   useEffect(() => {
     if (toggleTotalSelectedRow.current && getTotalSelectedRows() > 0) {
       toggleTotalSelectedRow.current.style.display = "block";
@@ -60,7 +75,7 @@ export default function BasicTable() {
     const allRowsSelected =
       selectedPages[currentPage]?.length === perPageData.length;
     setSelectAll(allRowsSelected);
-  }, [currentPage, dropdownData, selectedPages]);
+  }, [currentPage, dropdownData, selectedPages, rowss]);
 
   const handleChange = (event) => {
     setDropdownData(event.target.value);
@@ -123,10 +138,12 @@ export default function BasicTable() {
     allSearch,
     dropdownData,
     currentPage,
+    rowss,
   ]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+    setSelectAll(selectedPages[page]?.length === perPageData.length);
   };
 
   const isSelected = (id) => selectedRows.indexOf(id) !== -1;
@@ -137,6 +154,7 @@ export default function BasicTable() {
     const selectedRowIds = selected ? perPageData.map((row) => row.id) : [];
     setSelectedRows(selectedRowIds);
     setSelectedPages({ ...selectedPages, [currentPage]: selectedRowIds });
+    setAllSelectedRows(selected ? rowss.map((row) => row.id) : []);
   };
 
   const handleSelectRow = (event, id) => {
@@ -232,7 +250,7 @@ export default function BasicTable() {
                 <Checkbox checked={selectAll} onChange={handleSelectAll} />
               </TableCell>
               <TableCell>
-                ID <br />
+                Unique Id <br />
                 <input
                   className="inputBox"
                   type="search"
@@ -279,7 +297,7 @@ export default function BasicTable() {
                   />
                 </TableCell>
                 <TableCell component="th" scope="row">
-                  {row.id}
+                  {row.uniqueId}
                 </TableCell>
                 <TableCell>{row.medicineName}</TableCell>
                 <TableCell align="right">{row.salePrice}</TableCell>

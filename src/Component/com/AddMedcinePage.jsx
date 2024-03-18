@@ -1,11 +1,8 @@
-// InputForm.js
 import React, { useEffect, useState } from "react";
 import { TextField, Button, Grid, MenuItem } from "@material-ui/core";
 import { Select, FormControl, InputLabel } from "@mui/material";
 
 import "./AddMedcinePage.css";
-
-import rowss from "./Data";
 
 const InputForm = () => {
   const [formData, setFormData] = useState({
@@ -25,7 +22,6 @@ const InputForm = () => {
     strength: "",
     description: "",
   });
-  const [data, setData] = useState([]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -34,26 +30,34 @@ const InputForm = () => {
       [name]: value,
     });
   };
-  let userKey = new Date();
-  console.log(userKey);
-  const handleSubmitButton = () => {
+  const [userKey, setUserKey] = useState(1);
+  const handleSubmitButton = (event) => {
+    event.preventDefault(); // Prevent default form submission behavior
+
     localStorage.setItem(
       `Medicine Entery=> ${userKey}`,
       JSON.stringify(formData)
     );
-    const localStorageKeys = Object.keys(localStorage);
-    const information = localStorageKeys.map((key) => {
-      return JSON.parse(localStorage.getItem(key));
-    });
-    setData(information);
-    data.map((info) => {
-      rowss.push(info);
-    });
-    //
-
-    //console.log(rowss);
+    setUserKey(userKey + 1);
+    setFormData({
+      uniqueId: "",
+      batchNo: "",
+      medicineName: "",
+      medicineCompany: "",
+      quantity: "",
+      expiryDate: "",
+      purchaseDate: "",
+      type: "",
+      purchasePrice: "",
+      salePrice: "",
+      rackColour: "",
+      supplierNo: "",
+      supplierId: "",
+      strength: "",
+      description: "",
+    }); // Clear the form fields after submission
   };
-  // localStorage.clear();
+  //localStorage.clear();
   return (
     <>
       <fieldset>
@@ -259,4 +263,5 @@ const InputForm = () => {
   );
 };
 
-export default InputForm;
+export default InputForm; // Exporting only InputForm component
+export const info = []; // Exporting info array separately
