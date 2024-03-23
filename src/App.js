@@ -12,15 +12,20 @@ import AddMedcinePage from "./Component/com/AddMedcinePage";
 import BasicTable from "./Component/com/Table";
 //import AlertDialogSlide from "./Component/Delete";
 import MyForm from "./Component/validation/MyForm";
+import WithMaterialUI from "./Component/validation/try";
 //yaha par path define hai har page ke
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MyForm />,
+    element: <AddMedcinePage />,
   },
   {
     path: "/addMedcinePage",
-    element: <AddMedcinePage />,
+    element: <MyForm />,
+  },
+  {
+    path: "/try",
+    element: <WithMaterialUI />,
   },
   {
     path: "/myForm",
