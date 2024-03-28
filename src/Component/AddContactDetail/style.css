@@ -1,0 +1,49 @@
+.wholeContainer {
+  width: 650px;
+}
+.mainLable {
+  font-size: x-large;
+  font-weight: bold;
+  color: gray;
+}
+.form {
+  margin-top: 10px;
+}
+
+.feildLable {
+  padding-bottom: 2px;
+
+  font-weight: 700;
+}
+.selectContainer Field {
+  border-radius: 200px;
+}
+.todoList {
+  font-weight: 700;
+}
+.todoList input {
+  margin-top: 10px;
+  height: 30px;
+  font-weight: 400;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid rgb(154, 152, 152);
+  color: black;
+  margin-left: 10px;
+}
+.firestFeild {
+  width: 200px;
+}
+.secondFeild {
+  width: 100px;
+}
+.removebtn {
+  border: 1px solid gray;
+  border-radius: 5px;
+  background-color: transparent;
+  color: black;
+  font-weight: bolder;
+}
+.removebtn:hover {
+  color: darkgray;
+}

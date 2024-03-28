@@ -13,15 +13,20 @@ import BasicTable from "./Component/com/Table";
 //import AlertDialogSlide from "./Component/Delete";
 import MyForm from "./Component/validation/MyForm";
 import WithMaterialUI from "./Component/validation/try";
+import AddContactDetail from "./Component/AddContactDetail/AddContactDetail";
 //yaha par path define hai har page ke
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/addContactDetail",
     element: <AddMedcinePage />,
   },
   {
     path: "/addMedcinePage",
     element: <MyForm />,
+  },
+  {
+    path: "/",
+    element: <AddContactDetail />,
   },
   {
     path: "/try",
